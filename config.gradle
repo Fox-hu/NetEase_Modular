@@ -2,7 +2,10 @@ ext {
 
     // 定义一个项目全局变量isRelease，用于动态切换：组件化模式 / 集成化模式
     // false: 组件化模式（子模块可以独立运行），true ：集成化模式（打包整个项目apk，子模块不可独立运行）
-    isRelease = false
+    //这里修改 true 或者 false 看 , 右边模块的图标 , false的时候 没有依赖进去
+    //在 上面 锤子 选不同的模块来运行
+    // false 的时候 , build -> build bundles/apk ->build apk 确实可以打包三个 , 去各自build中去找
+    isRelease = true
 
     // 建立Map存储，对象名、key可以自定义
     androidId = [

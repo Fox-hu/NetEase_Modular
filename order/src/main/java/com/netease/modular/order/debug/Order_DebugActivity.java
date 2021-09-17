@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.netease.common.utils.Cons;
 import com.netease.modular.order.R;
-
+//继承的也是 common 中的debug
 public class Order_DebugActivity extends Order_DebugBaseActivity {
 
     @Override
