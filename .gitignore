@@ -1,0 +1,6 @@
+/app/build/
+/common/build/
+/.gradle/
+/.idea/
+/order/build/
+/personal/build/
