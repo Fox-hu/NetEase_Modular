@@ -9,7 +9,9 @@ import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
 import com.netease.modular.order.Order_MainActivity;
 import com.netease.modular.personal.Personal_MainActivity;
+import com.netesea.modular.annotation.ARouter;
 
+@ARouter(path = "/app/MainActivity")
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -25,9 +27,13 @@ public class MainActivity extends BaseActivity {
     }
 
     public void jumpOrder(View view) {
-        Intent intent = new Intent(this, Order_MainActivity.class);
-        intent.putExtra("name", "simon");
-        startActivity(intent);
+//        Intent intent = new Intent(this, Order_MainActivity.class);
+//        intent.putExtra("name", "simon");
+//        startActivity(intent);
+        //经过测试确实可以跳转成功的
+        Class<?> targetClass = TestActivity$$ARouter.findTargetClass("/app/TestActivity");
+        startActivity(new Intent(this,targetClass));
+
     }
 
     public void jumpPersonal(View view) {
