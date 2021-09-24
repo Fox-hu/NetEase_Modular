@@ -7,9 +7,16 @@ import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
+import com.netease.modular.api.ARouterLoadGroup;
+import com.netease.modular.api.ARouterLoadPath;
 import com.netease.modular.order.Order_MainActivity;
 import com.netease.modular.personal.Personal_MainActivity;
+import com.netease.modular.test.ARouter$$Group$$order;
+import com.netease.modular.test.ARouter$$Path$$order;
 import com.netesea.modular.annotation.ARouter;
+import com.netesea.modular.annotation.model.RouterBean;
+
+import java.util.Map;
 
 @ARouter(path = "/app/MainActivity")
 public class MainActivity extends BaseActivity {
@@ -28,6 +35,29 @@ public class MainActivity extends BaseActivity {
 
     public void jumpOrder(View view) {
 
+        //        Intent intent = new Intent(this, Order_MainActivity.class);
+//        intent.putExtra("name", "simon");
+//        startActivity(intent);
+
+        // 最终集成化模式，所有子模块app/order/personal通过APT生成的类文件都会打包到apk里面，不用担心找不到
+        ARouterLoadGroup group = new ARouter$$Group$$order();
+        Map<String, Class<? extends ARouterLoadPath>> map = group.loadGroup();
+        // 通过order组名获取对应路由路径对象
+        Class<? extends ARouterLoadPath> clazz = map.get("order");
+
+        try {
+            // 类加载动态加载路由路径对象
+            ARouter$$Path$$order path = (ARouter$$Path$$order) clazz.newInstance();
+            Map<String, RouterBean> pathMap = path.loadPath();
+            // 获取目标对象封装
+            RouterBean bean = pathMap.get("/order/Order_MainActivity");
+
+            if (bean != null) {
+                startActivity(new Intent(this, bean.getClazz()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

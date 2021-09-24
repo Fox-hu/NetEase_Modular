@@ -1,6 +1,7 @@
 package com.netease.modular.compiler;
 
 import com.google.auto.service.AutoService;
+import com.netease.modular.compiler.utils.Constants;
 import com.netesea.modular.annotation.ARouter;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
@@ -38,7 +39,7 @@ import javax.tools.JavaFileObject;
 // 用来生成 META-INF/services/javax.annotation.processing.Processor 文件
 @AutoService(Processor.class)  //compiler/build/classes/java/main/META-INF/services/javax.annotation.processing.Processor
 // 允许/支持的注解类型，让注解处理器处理（新增annotation module）
-@SupportedAnnotationTypes({"com.netesea.modular.annotation.ARouter"})
+@SupportedAnnotationTypes({Constants.IROUTER_ANNOTATION_TYPES})
 // 指定JDK编译版本
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 // 注解处理器接收的参数
