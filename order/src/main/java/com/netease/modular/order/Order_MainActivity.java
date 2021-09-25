@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
+import com.netesea.modular.annotation.ARouter;
 
+@ARouter(path = "/order/Order_MainActivity")
 public class Order_MainActivity extends BaseActivity {
 
     @Override

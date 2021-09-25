@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
+import com.netesea.modular.annotation.ARouter;
 
+@ARouter(path = "/personal/Personal_MainActivity")
 public class Personal_MainActivity extends BaseActivity {
 
     @Override

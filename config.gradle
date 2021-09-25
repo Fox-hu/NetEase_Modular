@@ -7,6 +7,9 @@ ext {
     // false 的时候 , build -> build bundles/apk ->build apk 确实可以打包三个 , 去各自build中去找
     isRelease = true
 
+    // 包名，用于存放APT生成的类文件
+    packageNameForAPT = "com.netease.modular.apt"
+
     // 建立Map存储，对象名、key可以自定义
     androidId = [
             compileSdkVersion: 28,
