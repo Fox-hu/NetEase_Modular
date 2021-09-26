@@ -6,10 +6,15 @@ import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
+import com.netease.modular.api.ParameterManager;
 import com.netesea.modular.annotation.ARouter;
+import com.netesea.modular.annotation.Parameter;
 
 @ARouter(path = "/order/Order_MainActivity")
 public class Order_MainActivity extends BaseActivity {
+
+    @Parameter
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +23,10 @@ public class Order_MainActivity extends BaseActivity {
 
         Log.e(Cons.TAG, "order/Order_MainActivity");
 
-        if (getIntent() != null) {
-            String content = getIntent().getStringExtra("name");
-            Log.e(Cons.TAG, "接收参数值：" + content);
-        }
+        //懒加载 , 跳转到哪里加载到哪里
+        ParameterManager.getInstance().loadParameter(this);
+
+        Log.e(Cons.TAG, "接收参数的值: " + name);
     }
 
     public void jumpApp(View view) {
@@ -29,6 +34,6 @@ public class Order_MainActivity extends BaseActivity {
     }
 
     public void jumpPersonal(View view) {
-//
+
     }
 }
