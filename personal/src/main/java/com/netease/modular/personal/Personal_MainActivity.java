@@ -6,10 +6,16 @@ import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
+import com.netease.modular.api.ParameterManager;
+import com.netease.modular.api.RouterManager;
 import com.netesea.modular.annotation.ARouter;
+import com.netesea.modular.annotation.Parameter;
 
 @ARouter(path = "/personal/Personal_MainActivity")
 public class Personal_MainActivity extends BaseActivity {
+
+    @Parameter
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,17 +24,21 @@ public class Personal_MainActivity extends BaseActivity {
 
         Log.e(Cons.TAG, "personal/Personal_MainActivity");
 
-        if (getIntent() != null) {
-            String content = getIntent().getStringExtra("name");
-            Log.e(Cons.TAG, "接收参数值：" + content);
-        }
+        ParameterManager.getInstance().loadParameter(this);
+        Log.e(Cons.TAG, "Personal_MainActivity onCreate: " + name);
     }
 
     public void jumpApp(View view) {
-
+        RouterManager.getInstance()
+                .build("/app/MainActivity")
+                .withString("name", "张三")
+                .navigation(this);
     }
 
     public void jumpOrder(View view) {
-
+        RouterManager.getInstance()
+                .build("/order/Order_MainActivity")
+                .withResultString("call", "i am comeback")
+                .navigation(this, 163);
     }
 }
