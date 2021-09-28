@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.netease.common.base.BaseActivity;
-import com.netease.common.utils.Cons;
-import com.netease.arouter.api.ParameterManager;
-import com.netease.arouter.api.RouterManager;
 import com.netease.arouter.annotation.ARouter;
 import com.netease.arouter.annotation.Parameter;
+import com.netease.arouter.api.ParameterManager;
+import com.netease.arouter.api.RouterManager;
+import com.netease.common.base.BaseActivity;
+import com.netease.common.user.BaseUser;
+import com.netease.common.user.IUser;
+import com.netease.common.utils.Cons;
 
 @ARouter(path = "/personal/Personal_MainActivity")
 public class Personal_MainActivity extends BaseActivity {
 
+    @Parameter(name = "/app/getUserInfo")
+    IUser iUser;
+
     @Parameter
-    String name;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,21 +29,30 @@ public class Personal_MainActivity extends BaseActivity {
 
         Log.e(Cons.TAG, "personal/Personal_MainActivity");
 
+        // ?????,????????
         ParameterManager.getInstance().loadParameter(this);
-        Log.e(Cons.TAG, "Personal_MainActivity onCreate: " + name);
+
+        Log.e(Cons.TAG, "?????:" + username);
+
+        BaseUser userInfo = iUser.getUserInfo();
+        if (userInfo != null) {
+            Log.e(Cons.TAG, userInfo.getName() + " / "
+                    + userInfo.getAccount() + " / "
+                    + userInfo.getPassword());
+        }
     }
 
     public void jumpApp(View view) {
         RouterManager.getInstance()
                 .build("/app/MainActivity")
-                .withString("name", "ÕÅÈý")
+                .withResultString("call", "I'am comeback!")
                 .navigation(this);
     }
 
     public void jumpOrder(View view) {
         RouterManager.getInstance()
                 .build("/order/Order_MainActivity")
-                .withResultString("call", "i am comeback")
-                .navigation(this, 163);
+                .withString("name", "simon")
+                .navigation(this);
     }
 }

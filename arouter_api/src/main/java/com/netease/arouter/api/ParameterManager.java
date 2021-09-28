@@ -36,18 +36,26 @@ public final class ParameterManager {
     }
 
     //build/generated/source/apt/debug/com/netease/modular/MainActivity$$Parameter.java
+	/**
+     * 传入的Activity中所有被@Parameter注解的属性。通过加载APT生成源文件，并给属性赋值
+     *
+     * @param activity 需要给属性赋值的类，如：MainActivity中所有被@Parameter注解的属性
+     */
     public void loadParameter(@NonNull Activity activity) {
         String className = activity.getClass().getName();
+        // 查找缓存集合中是否有对应activity的value
         ParameterLoad iParameter = cache.get(className);
 
         try {
-            //缓存中找不到
+            // 找不到，加载类后放入缓存集合
             if (iParameter == null) {
-                //加载出来
+                // 注意：这里的className是全类名：com.xxx.xxx.Activity
                 Class<?> clazz = Class.forName(className + FILE_SUFFIX_NAME);
                 iParameter = (ParameterLoad) clazz.newInstance();
                 cache.put(className, iParameter);
             }
+
+            // 通过传入参数给生成的源文件中所有属性赋值
             iParameter.loadParameter(activity);
         } catch (Exception e) {
             e.printStackTrace();

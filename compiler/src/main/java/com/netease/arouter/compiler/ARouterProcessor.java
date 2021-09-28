@@ -1,10 +1,10 @@
 package com.netease.arouter.compiler;
 
 import com.google.auto.service.AutoService;
-import com.netease.arouter.compiler.utils.EmptyUtils;
-import com.netease.arouter.compiler.utils.Constants;
 import com.netease.arouter.annotation.ARouter;
 import com.netease.arouter.annotation.model.RouterBean;
+import com.netease.arouter.compiler.utils.Constants;
+import com.netease.arouter.compiler.utils.EmptyUtils;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
@@ -46,7 +46,7 @@ import javax.tools.Diagnostic;
 // 用来生成 META-INF/services/javax.annotation.processing.Processor 文件
 @AutoService(Processor.class)  //compiler/build/classes/java/main/META-INF/services/javax.annotation.processing.Processor
 // 允许/支持的注解类型，让注解处理器处理（新增annotation module）
-@SupportedAnnotationTypes({Constants.IROUTER_ANNOTATION_TYPES})
+@SupportedAnnotationTypes({Constants.AROUTER_ANNOTATION_TYPES})
 // 指定JDK编译版本
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 // 注解处理器接收的参数
@@ -98,7 +98,7 @@ public class ARouterProcessor extends AbstractProcessor {
             packageNameForAPT = options.get(Constants.APT_PACKAGE);
             // 有坑：Diagnostic.Kind.ERROR，异常会自动结束，不像安卓中Log.e
             messager.printMessage(Diagnostic.Kind.NOTE, "moduleName >>> " + moduleName);
-            messager.printMessage(Diagnostic.Kind.NOTE, "packageNameForAPT >>> " + packageNameForAPT);
+            messager.printMessage(Diagnostic.Kind.NOTE, "packageName >>> " + packageNameForAPT);
         }
 
         // 必传参数判空（乱码问题：添加java控制台输出中文乱码）

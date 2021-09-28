@@ -1,12 +1,10 @@
 package com.netease.arouter.compiler;
 
 import com.google.auto.service.AutoService;
-;
-
-import com.netease.arouter.compiler.utils.EmptyUtils;
+import com.netease.arouter.annotation.Parameter;
 import com.netease.arouter.compiler.factory.ParameterFactory;
 import com.netease.arouter.compiler.utils.Constants;
-import com.netease.arouter.annotation.Parameter;
+import com.netease.arouter.compiler.utils.EmptyUtils;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.ParameterSpec;

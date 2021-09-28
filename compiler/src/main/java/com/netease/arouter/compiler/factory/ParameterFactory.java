@@ -1,7 +1,8 @@
 package com.netease.arouter.compiler.factory;
-import com.netease.arouter.compiler.utils.EmptyUtils;
-import com.netease.arouter.compiler.utils.Constants;
+
 import com.netease.arouter.annotation.Parameter;
+import com.netease.arouter.compiler.utils.Constants;
+import com.netease.arouter.compiler.utils.EmptyUtils;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
