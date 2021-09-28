@@ -2,11 +2,13 @@ package com.netease.modular;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
+import com.netease.modular.api.RouterManager;
 import com.netease.modular.order.Order_MainActivity;
 import com.netesea.modular.annotation.ARouter;
 import com.netesea.modular.annotation.Parameter;
@@ -36,12 +38,24 @@ public class MainActivity extends BaseActivity {
     }
 
     public void jumpOrder(View view) {
-        Intent intent = new Intent(this, Order_MainActivity.class);
-        intent.putExtra("name","老张");
-        startActivity(intent);
+        RouterManager.getInstance()
+                .build("/order/Order_MainActivity")
+                .withString("name", "张三")
+                .navigation(this,163);
     }
 
     public void jumpPersonal(View view) {
+        RouterManager.getInstance()
+                .build("/personal/Personal_MainActivity")
+                .withResultString("call", "i am comeback")
+                .navigation(this, 163);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            Log.e(Cons.TAG, "MainActivity  onActivityResult: " + data.getStringExtra("call"));
+        }
     }
 }

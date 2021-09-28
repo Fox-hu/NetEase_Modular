@@ -35,8 +35,8 @@ public class Order_MainActivity extends BaseActivity {
     public void jumpApp(View view) {
         RouterManager.getInstance()
                 .build("/app/MainActivity")
-                .withString("name", "ÕÅÈý")
-                .navigation(this);
+                .withResultString("call", "wo shi call")
+                .navigation(this,163);
     }
 
     public void jumpPersonal(View view) {
@@ -46,11 +46,5 @@ public class Order_MainActivity extends BaseActivity {
                 .navigation(this, 163);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
-            Log.e(Cons.TAG, "Order_MainActivity  onActivityResult: " + data.getStringExtra("call"));
-        }
-    }
+
 }
