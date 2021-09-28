@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.netease.common.order.OrderAddress;
 import com.netease.common.order.OrderBean;
 import com.netease.modular.order.services.OrderServices;
-import com.netesea.modular.annotation.ARouter;
+import com.netease.arouter.annotation.ARouter;
 
 import java.io.IOException;
 

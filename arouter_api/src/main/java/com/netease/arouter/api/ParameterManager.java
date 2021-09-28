@@ -1,8 +1,10 @@
-package com.netease.modular.api;
+package com.netease.arouter.api;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.LruCache;
+
+import com.netease.arouter.api.core.ParameterLoad;
 
 
 /**

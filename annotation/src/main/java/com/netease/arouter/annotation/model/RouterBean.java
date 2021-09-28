@@ -1,4 +1,4 @@
-package com.netesea.modular.annotation.model;
+package com.netease.arouter.annotation.model;
 
 import javax.lang.model.element.Element;
 

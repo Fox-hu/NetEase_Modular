@@ -6,10 +6,10 @@ import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
-import com.netease.modular.api.ParameterManager;
-import com.netease.modular.api.RouterManager;
-import com.netesea.modular.annotation.ARouter;
-import com.netesea.modular.annotation.Parameter;
+import com.netease.arouter.api.ParameterManager;
+import com.netease.arouter.api.RouterManager;
+import com.netease.arouter.annotation.ARouter;
+import com.netease.arouter.annotation.Parameter;
 
 @ARouter(path = "/personal/Personal_MainActivity")
 public class Personal_MainActivity extends BaseActivity {

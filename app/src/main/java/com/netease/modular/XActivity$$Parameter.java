@@ -1,6 +1,6 @@
 package com.netease.modular;
 
-import com.netease.modular.api.ParameterLoad;
+import com.netease.arouter.api.core.ParameterLoad;
 
 public class XActivity$$Parameter implements ParameterLoad {
 

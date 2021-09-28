@@ -1,7 +1,7 @@
-package com.netease.modular.compiler.factory;
-import com.netease.modular.compiler.utils.Constants;
-import com.netease.modular.compiler.utils.EmptyUtils;
-import com.netesea.modular.annotation.Parameter;
+package com.netease.arouter.compiler.factory;
+import com.netease.arouter.compiler.utils.EmptyUtils;
+import com.netease.arouter.compiler.utils.Constants;
+import com.netease.arouter.annotation.Parameter;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;

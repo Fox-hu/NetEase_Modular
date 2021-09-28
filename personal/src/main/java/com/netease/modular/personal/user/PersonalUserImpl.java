@@ -4,7 +4,7 @@ package com.netease.modular.personal.user;
 import com.netease.common.user.BaseUser;
 import com.netease.common.user.IUser;
 import com.netease.modular.personal.model.UserInfo;
-import com.netesea.modular.annotation.ARouter;
+import com.netease.arouter.annotation.ARouter;
 
 /**
  * personal模块实现的内容

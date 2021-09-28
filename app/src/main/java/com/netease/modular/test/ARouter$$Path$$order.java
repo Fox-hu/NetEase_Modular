@@ -1,9 +1,9 @@
 package com.netease.modular.test;
 
 
-import com.netease.modular.api.ARouterLoadPath;
+import com.netease.arouter.api.core.ARouterLoadPath;
 import com.netease.modular.order.Order_MainActivity;
-import com.netesea.modular.annotation.model.RouterBean;
+import com.netease.arouter.annotation.model.RouterBean;
 
 import java.util.HashMap;
 import java.util.Map;

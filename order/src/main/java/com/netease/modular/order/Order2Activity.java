@@ -3,7 +3,7 @@ package com.netease.modular.order;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.netesea.modular.annotation.ARouter;
+import com.netease.arouter.annotation.ARouter;
 
 @ARouter(path = "/order/Order2Activity")
 public class Order2Activity extends AppCompatActivity {

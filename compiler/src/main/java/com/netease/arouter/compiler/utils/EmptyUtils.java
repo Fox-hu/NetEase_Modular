@@ -1,4 +1,4 @@
-package com.netease.modular.compiler.utils;
+package com.netease.arouter.compiler.utils;
 
 import java.util.Collection;
 import java.util.Map;

@@ -1,17 +1,15 @@
 package com.netease.modular.order;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.utils.Cons;
-import com.netease.modular.api.ParameterManager;
-import com.netease.modular.api.RouterManager;
-import com.netesea.modular.annotation.ARouter;
-import com.netesea.modular.annotation.Parameter;
+import com.netease.arouter.api.ParameterManager;
+import com.netease.arouter.api.RouterManager;
+import com.netease.arouter.annotation.ARouter;
+import com.netease.arouter.annotation.Parameter;
 
 @ARouter(path = "/order/Order_MainActivity")
 public class Order_MainActivity extends BaseActivity {

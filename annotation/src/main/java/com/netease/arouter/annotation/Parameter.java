@@ -1,4 +1,4 @@
-package com.netesea.modular.annotation;
+package com.netease.arouter.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

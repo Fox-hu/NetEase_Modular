@@ -1,10 +1,10 @@
-package com.netease.modular.compiler;
+package com.netease.arouter.compiler;
 
 import com.google.auto.service.AutoService;
-import com.netease.modular.compiler.utils.Constants;
-import com.netease.modular.compiler.utils.EmptyUtils;
-import com.netesea.modular.annotation.ARouter;
-import com.netesea.modular.annotation.model.RouterBean;
+import com.netease.arouter.compiler.utils.EmptyUtils;
+import com.netease.arouter.compiler.utils.Constants;
+import com.netease.arouter.annotation.ARouter;
+import com.netease.arouter.annotation.model.RouterBean;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;

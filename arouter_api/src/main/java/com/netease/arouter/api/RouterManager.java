@@ -1,4 +1,4 @@
-package com.netease.modular.api;
+package com.netease.arouter.api;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
 
-import com.netesea.modular.annotation.model.RouterBean;
+import com.netease.arouter.annotation.model.RouterBean;
+import com.netease.arouter.api.core.ARouterLoadGroup;
+import com.netease.arouter.api.core.ARouterLoadPath;
 
 /**
  * 路由加载管理器

@@ -2,8 +2,8 @@ package com.netease.modular.test;
 
 
 
-import com.netease.modular.api.ARouterLoadGroup;
-import com.netease.modular.api.ARouterLoadPath;
+import com.netease.arouter.api.core.ARouterLoadGroup;
+import com.netease.arouter.api.core.ARouterLoadPath;
 
 import java.util.HashMap;
 import java.util.Map;

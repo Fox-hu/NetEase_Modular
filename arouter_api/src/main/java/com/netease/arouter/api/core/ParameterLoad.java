@@ -1,4 +1,4 @@
-package com.netease.modular.api;
+package com.netease.arouter.api.core;
 
 /**
  * 参数Parameter加载接口

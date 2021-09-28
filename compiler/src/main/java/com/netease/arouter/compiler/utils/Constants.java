@@ -1,4 +1,4 @@
-package com.netease.modular.compiler.utils;
+package com.netease.arouter.compiler.utils;
 
 /**
  * 常量类

@@ -1,7 +1,7 @@
 package com.netease.common.user;
 
 
-import com.netease.modular.api.core.Call;
+import com.netease.arouter.api.core.Call;
 
 public interface IUser extends Call {
 

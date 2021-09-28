@@ -9,17 +9,14 @@ import android.widget.ImageView;
 
 import com.netease.common.base.BaseActivity;
 import com.netease.common.order.OrderAddress;
-import com.netease.common.order.OrderBean;
 import com.netease.common.order.drawable.OrderDrawable;
 import com.netease.common.utils.Cons;
-import com.netease.modular.api.ParameterManager;
-import com.netease.modular.api.RouterManager;
+import com.netease.arouter.api.ParameterManager;
+import com.netease.arouter.api.RouterManager;
 import com.netease.modular.order.BuildConfig;
 
-import com.netesea.modular.annotation.ARouter;
-import com.netesea.modular.annotation.Parameter;
-
-import java.io.IOException;
+import com.netease.arouter.annotation.ARouter;
+import com.netease.arouter.annotation.Parameter;
 
 @ARouter(path = "/app/MainActivity")
 public class MainActivity extends BaseActivity {

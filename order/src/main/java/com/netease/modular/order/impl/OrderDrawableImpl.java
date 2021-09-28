@@ -3,7 +3,7 @@ package com.netease.modular.order.impl;
 
 import com.netease.common.order.drawable.OrderDrawable;
 import com.netease.modular.order.R;
-import com.netesea.modular.annotation.ARouter;
+import com.netease.arouter.annotation.ARouter;
 
 /**
  * 订单模块对外暴露接口实现类，其他模块可以获取返回res资源

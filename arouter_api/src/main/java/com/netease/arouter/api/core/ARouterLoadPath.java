@@ -1,8 +1,8 @@
-package com.netease.modular.api;
+package com.netease.arouter.api.core;
 
 
 
-import com.netesea.modular.annotation.model.RouterBean;
+import com.netease.arouter.annotation.model.RouterBean;
 
 import java.util.Map;
 

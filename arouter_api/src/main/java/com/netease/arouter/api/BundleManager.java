@@ -1,4 +1,4 @@
-package com.netease.modular.api;
+package com.netease.arouter.api;
 
 import android.content.Context;
 import android.os.Bundle;

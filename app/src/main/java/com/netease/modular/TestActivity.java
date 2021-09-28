@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.netease.common.utils.Cons;
-import com.netease.modular.api.ParameterLoad;
-import com.netesea.modular.annotation.ARouter;
-import com.netesea.modular.annotation.Parameter;
+import com.netease.arouter.api.core.ParameterLoad;
+import com.netease.arouter.annotation.ARouter;
+import com.netease.arouter.annotation.Parameter;
 
 @ARouter(path = "/app/TestActivity")
 public class TestActivity extends AppCompatActivity {
