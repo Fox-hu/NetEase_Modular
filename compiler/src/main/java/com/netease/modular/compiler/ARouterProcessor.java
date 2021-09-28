@@ -2,6 +2,7 @@ package com.netease.modular.compiler;
 
 import com.google.auto.service.AutoService;
 import com.netease.modular.compiler.utils.Constants;
+import com.netease.modular.compiler.utils.EmptyUtils;
 import com.netesea.modular.annotation.ARouter;
 import com.netesea.modular.annotation.model.RouterBean;
 import com.squareup.javapoet.ClassName;
@@ -12,9 +13,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.WildcardTypeName;
 
-
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +37,6 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
-import javax.tools.JavaFileObject;
 
 /**
  * 编码此类1句话：细心再细心，出了问题debug真的不好调试
@@ -95,7 +93,7 @@ public class ARouterProcessor extends AbstractProcessor {
 
         // 通过ProcessingEnvironment去获取对应的参数
         Map<String, String> options = processingEnvironment.getOptions();
-        if (!com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(options)) {
+        if (!EmptyUtils.isEmpty(options)) {
             moduleName = options.get(Constants.MODULE_NAME);
             packageNameForAPT = options.get(Constants.APT_PACKAGE);
             // 有坑：Diagnostic.Kind.ERROR，异常会自动结束，不像安卓中Log.e
@@ -104,7 +102,7 @@ public class ARouterProcessor extends AbstractProcessor {
         }
 
         // 必传参数判空（乱码问题：添加java控制台输出中文乱码）
-        if (com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(moduleName) || com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(packageNameForAPT)) {
+        if (EmptyUtils.isEmpty(moduleName) || EmptyUtils.isEmpty(packageNameForAPT)) {
             throw new RuntimeException("注解处理器需要的参数moduleName或者packageName为空，请在对应build.gradle配置参数");
         }
     }
@@ -122,11 +120,11 @@ public class ARouterProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         // 一旦有类之上使用@ARouter注解
-        if (!com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(set)) {
+        if (!EmptyUtils.isEmpty(set)) {
             // 获取所有被 @ARouter 注解的 元素集合
             Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ARouter.class);
 
-            if (!com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(elements)) {
+            if (!EmptyUtils.isEmpty(elements)) {
                 // 解析元素
                 try {
                     parseElements(elements);
@@ -145,9 +143,11 @@ public class ARouterProcessor extends AbstractProcessor {
     private void parseElements(Set<? extends Element> elements) throws IOException {
         // 通过Element工具类，获取Activity、Callback类型
         TypeElement activityType = elementUtils.getTypeElement(Constants.ACTIVITY);
+        TypeElement callType = elementUtils.getTypeElement(Constants.CALL);
 
         // 显示类信息（获取被注解节点，类节点）这里也叫自描述 Mirror
         TypeMirror activityMirror = activityType.asType();
+        TypeMirror callMirror = callType.asType();
 
         // 遍历节点
         for (Element element : elements) {
@@ -169,6 +169,8 @@ public class ARouterProcessor extends AbstractProcessor {
             // 类型工具类方法isSubtype，相当于instance一样
             if (typeUtils.isSubtype(elementMirror, activityMirror)) {
                 bean.setType(RouterBean.Type.ACTIVITY);
+            } else if (typeUtils.isSubtype(elementMirror, callMirror)) {
+                bean.setType(RouterBean.Type.CALL);
             } else {
                 // 不匹配抛出异常，这里谨慎使用！考虑维护问题
                 throw new RuntimeException("@ARouter注解目前仅限用于Activity类之上");
@@ -198,7 +200,7 @@ public class ARouterProcessor extends AbstractProcessor {
      */
     private void createPathFile(TypeElement pathLoadType) throws IOException {
         // 判断是否有需要生成的类文件
-        if (com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(tempPathMap)) return;
+        if (EmptyUtils.isEmpty(tempPathMap)) return;
 
         TypeName methodReturns = ParameterizedTypeName.get(
                 ClassName.get(Map.class), // Map
@@ -273,7 +275,7 @@ public class ARouterProcessor extends AbstractProcessor {
      */
     private void createGroupFile(TypeElement groupLoadType, TypeElement pathLoadType) throws IOException {
         // 判断是否有需要生成的类文件
-        if (com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(tempGroupMap) || com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(tempPathMap)) return;
+        if (EmptyUtils.isEmpty(tempGroupMap) || EmptyUtils.isEmpty(tempPathMap)) return;
 
         TypeName methodReturns = ParameterizedTypeName.get(
                 ClassName.get(Map.class), // Map
@@ -341,7 +343,7 @@ public class ARouterProcessor extends AbstractProcessor {
             // 开始赋值Map
             List<RouterBean> routerBeans = tempPathMap.get(bean.getGroup());
             // 如果从Map中找不到key为：bean.getGroup()的数据，就新建List集合再添加进Map
-            if (com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(routerBeans)) {
+            if (EmptyUtils.isEmpty(routerBeans)) {
                 routerBeans = new ArrayList<>();
                 routerBeans.add(bean);
                 tempPathMap.put(bean.getGroup(), routerBeans);
@@ -364,7 +366,7 @@ public class ARouterProcessor extends AbstractProcessor {
         String path = bean.getPath();
 
         // @ARouter注解中的path值，必须要以 / 开头（模仿阿里Arouter规范）
-        if (com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(path) || !path.startsWith("/")) {
+        if (EmptyUtils.isEmpty(path) || !path.startsWith("/")) {
             messager.printMessage(Diagnostic.Kind.ERROR, "@ARouter注解中的path值，必须要以 / 开头");
             return false;
         }
@@ -380,7 +382,7 @@ public class ARouterProcessor extends AbstractProcessor {
         String finalGroup = path.substring(1, path.indexOf("/", 1));
 
         // @ARouter注解中的group有赋值情况
-        if (!com.netease.arouter.compiler.utils.EmptyUtils.isEmpty(group) && !group.equals(moduleName)) {
+        if (!EmptyUtils.isEmpty(group) && !group.equals(moduleName)) {
             // 架构师定义规范，让开发者遵循
             messager.printMessage(Diagnostic.Kind.ERROR, "@ARouter注解中的group值必须和子模块名一致！");
             return false;

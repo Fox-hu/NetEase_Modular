@@ -149,7 +149,11 @@ public final class RouterManager {
                             }
                             break;
 
-
+                        case CALL:
+                            Class<?> clazz = routerBean.getClazz();
+                            Call call = (Call) clazz.newInstance();
+                            bundleManager.setCall(call);
+                            return bundleManager.getCall();
                     }
                 }
             }

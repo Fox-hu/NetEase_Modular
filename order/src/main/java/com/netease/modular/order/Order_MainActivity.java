@@ -42,7 +42,7 @@ public class Order_MainActivity extends BaseActivity {
     public void jumpPersonal(View view) {
         RouterManager.getInstance()
                 .build("/personal/Personal_MainActivity")
-                .withResultString("name", "уехЩ")
+                .withResultString("name", "ZhangSan")
                 .navigation(this, 163);
     }
 

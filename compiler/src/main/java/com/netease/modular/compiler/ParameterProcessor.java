@@ -2,9 +2,10 @@ package com.netease.modular.compiler;
 
 import com.google.auto.service.AutoService;
 ;
-import com.netease.arouter.compiler.utils.EmptyUtils;
+
 import com.netease.modular.compiler.factory.ParameterFactory;
 import com.netease.modular.compiler.utils.Constants;
+import com.netease.modular.compiler.utils.EmptyUtils;
 import com.netesea.modular.annotation.Parameter;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
@@ -107,6 +108,8 @@ public class ParameterProcessor extends AbstractProcessor {
             // 方法体内容构建
             ParameterFactory factory = new ParameterFactory.Builder(parameterSpec)
                     .setMessager(messager)
+                    .setElementUtils(elementUtils)
+                    .setTypeUtils(typeUtils)
                     .setClassName(className)
                     .build();
 

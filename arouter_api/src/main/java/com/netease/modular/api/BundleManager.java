@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.telecom.Call;
 
 
 /**
@@ -12,7 +13,8 @@ import android.support.annotation.Nullable;
 public final class BundleManager {
 
     private Bundle bundle = new Bundle();
-
+    // 底层业务接口
+    private Call call;
     // 是否回调setResult()
     private boolean isResult;
 
@@ -20,6 +22,13 @@ public final class BundleManager {
         return bundle;
     }
 
+    Call getCall() {
+        return call;
+    }
+
+    void setCall(Call call) {
+        this.call = call;
+    }
 
     boolean isResult() {
         return isResult;

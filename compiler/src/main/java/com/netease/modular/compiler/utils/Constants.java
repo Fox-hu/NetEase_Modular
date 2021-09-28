@@ -19,14 +19,18 @@ public class Constants {
     public static final String STRING = "java.lang.String";
     // Activity全类名
     public static final String ACTIVITY = "android.app.Activity";
+    // RouterManager类名
+    public static final String ROUTER_MANAGER = "RouterManager";
     // 包名前缀封装
-    static final String BASE_PACKAGE = "com.netease.modular.api";
+    public static final String BASE_PACKAGE = "com.netease.modular.api";
     // 路由组Group加载接口
     public static final String AROUTE_GROUP = BASE_PACKAGE + ".ARouterLoadGroup";
     // 路由组Group对应的详细Path加载接口
     public static final String AROUTE_PATH = BASE_PACKAGE + ".ARouterLoadPath";
     // 获取参数，加载接口
     public static final String PARAMETER_LOAD = BASE_PACKAGE + ".ParameterLoad";
+	// 跨模块业务，回调接口
+    public static final String CALL = BASE_PACKAGE + ".core.Call";
 
 
     // 路由组Group，参数名
